@@ -1,5 +1,13 @@
                           # No-SQL_database project
 
+     #01# Write a python program to connect to a NoSQLl database to show following from your 
+      semi-structured data model.
+        # Count of rows of each collection
+        # Show a sample of 3 doduments (rows) from each collection
+        # Use a join (any type) to show data among two collections using the local key and foreign key 
+          concepts
+
+
 import pymongo
 
 # Establishing the connection to MongoDB
