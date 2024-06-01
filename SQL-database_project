@@ -1,5 +1,14 @@
                           # SQL_database project
 
+
+        #01# Python program to connect to a relational database to show following from your 
+        structured data model.
+        # Count of rows of each table
+        # Show a sample of 3 rows from each table
+        # Use a join (any type) to show data among two tables using the primary key and foreign key 
+        relationship
+
+
 import sqlite3
 
 # Connect to the SQLite database (or create it if it doesn't exist)
