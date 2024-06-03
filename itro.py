@@ -2,6 +2,7 @@
 name = "ali"
 height = 139
 weight = 70
+address = 'lahore'
 bmi = height * weight
 print(bmi)
 if bmi > 10000:
