@@ -7,6 +7,6 @@ print(bmi)
 if bmi > 10000:
     print("greater than")
 elif bmi >= 9730:
-    print("equal")
+    print("equal good luck")
 else:
     print('less than')
