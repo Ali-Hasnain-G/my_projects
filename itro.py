@@ -11,3 +11,6 @@ elif bmi >= 9730:
     print("equal good luck")
 else:
     print('less than')
+
+# usefull tutorials for coding
+# https://github.com/iamshaunjp/flutter-beginners-tutorial
