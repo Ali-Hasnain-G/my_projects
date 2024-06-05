@@ -1,0 +1,49 @@
+npx create-expo-app coding t expo-template-blank-typescript
+
+cd./coding
+
+npx expo install firebase
+
+#Navigation
+
+npnpx m install @react-navigation/native @react-navigation/native-stack
+
+npx expo install react-native-screens react-native-safe-area-context
+
+flutter setup
+
+
+To test and run your Flutter pharmacy app on an emulator or physical device, follow these steps:
+
+1. Set Up Flutter Environment:
+Make sure you have Flutter installed on your machine. You can follow the instructions provided in the official Flutter documentation: Install Flutter
+
+2. Connect Emulator or Device:
+Using Emulator: Start an emulator from Android Studio or using the command line (flutter emulators and flutter emulators --launch <emulator_id>).
+
+Using Physical Device: Connect your physical device to your computer via USB and ensure USB debugging is enabled in the developer options.
+
+3. Open Terminal:
+Navigate to your project directory in the terminal.
+
+4. Run the App:
+Use the following command to run your app:
+
+bash
+Copy code
+flutter run
+This command will build and deploy your Flutter app to the connected emulator or physical device. If everything is set up correctly, you should see your app running on the screen.
+
+5. Testing:
+Once your app is running, you can interact with it on the emulator or physical device just like you would with any other app. Test various features, buttons, navigation, and functionalities to ensure everything works as expected.
+
+6. Debugging:
+If you encounter any issues or errors while testing, you can use the debugging tools provided by Flutter and your IDE (like Visual Studio Code or Android Studio) to identify and fix them. Set breakpoints, inspect variables, and use hot reload to make changes on-the-fly.
+
+7. Closing the App:
+To close the app running on the emulator or physical device, simply exit the app by pressing the home button or using the app switcher.
+
+8. Stop the Emulator:
+If you're done testing, you can stop the emulator by closing it from Android Studio or using the command line (flutter emulators --stop).
+
+By following these steps, you can effectively test and debug your Flutter pharmacy app on an emulator or physical device. Make sure to thoroughly test all features and functionalities to ensure a smooth user experience.
