@@ -47,25 +47,3 @@ To close the app running on the emulator or physical device, simply exit the app
 If you're done testing, you can stop the emulator by closing it from Android Studio or using the command line (flutter emulators --stop).
 
 By following these steps, you can effectively test and debug your Flutter pharmacy app on an emulator or physical device. Make sure to thoroughly test all features and functionalities to ensure a smooth user experience.
-dsfdfdsfd
-
-
-
-efgdsfhsd
-shdjfhsdf
-'
-dskfjhsd
-skhfslkjf
-sdhfksdjhf
-sdkjhf;f
-sdkjfhsuif
-kshdfijye
-sjdhfuie
-cdjfhdsaskfhs
-jkashfs
-kslajhf;
-kjshfd
-kshdkjf
-lkhsd
-khsd;featuresskdjhf
-khj'features
