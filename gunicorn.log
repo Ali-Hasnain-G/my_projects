@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\GM Computer\coding\.venv\Scripts\gunicorn.exe\__main__.py", line 4, in <module>
+  File "c:\Users\GM Computer\coding\.venv\Lib\site-packages\gunicorn\app\wsgiapp.py", line 9, in <module>
+    from gunicorn.app.base import Application
+  File "c:\Users\GM Computer\coding\.venv\Lib\site-packages\gunicorn\app\base.py", line 11, in <module>
+    from gunicorn import util
+  File "c:\Users\GM Computer\coding\.venv\Lib\site-packages\gunicorn\util.py", line 8, in <module>
+    import fcntl
+ModuleNotFoundError: No module named 'fcntl'
