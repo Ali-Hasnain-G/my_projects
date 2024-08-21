@@ -1,0 +1,7 @@
+@app.route('/processed_frame')
+def processed_frame():
+    frame_path = os.path.join(app.config['PROCESSED_FOLDER'], 'frame.jpg')
+    if os.path.exists(frame_path):
+        return send_from_directory(app.config['PROCESSED_FOLDER'], 'frame.jpg')
+    else:
+        return "Processed frame not available", 404
