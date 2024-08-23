@@ -1,3 +1,3 @@
-name = 'ali'
 
-print(name)
+name = 'ali'
+print('his name is this:', name)

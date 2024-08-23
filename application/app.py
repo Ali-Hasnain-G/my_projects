@@ -1,16 +1,17 @@
-from flask import Flask, render_template, request, redirect, url_for, send_from_directory, make_response
+from flask import Flask, render_template, request, redirect, url_for, send_from_directory, make_response, current_app
 import cv2
 import numpy as np
 import os
 import joblib
 import time
 from datetime import datetime
+import logging
 
 app = Flask(__name__)
 
 # Set up paths and configurations
-app.config['UPLOAD_FOLDER'] = 'static/uploads'
-app.config['PROCESSED_FOLDER'] = 'static/processed'
+app.config['UPLOAD_FOLDER'] = 'static/UPLOAD_FOLDER'
+app.config['PROCESSED_FOLDER'] = 'static/PROCESSED_FOLDER'
 app.config['MAX_CONTENT_LENGTH'] = 50 * 1024 * 1024  # 50 MB
 
 # Create directories if they don't exist
@@ -19,6 +20,14 @@ os.makedirs(app.config['PROCESSED_FOLDER'], exist_ok=True)
 
 # Load the trained model
 model = joblib.load('model.pkl')
+
+# Disable caching for static files
+@app.after_request
+def add_no_cache_headers(response):
+    response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+    response.headers['Pragma'] = 'no-cache'
+    response.headers['Expires'] = '0'
+    return response
 
 @app.route('/')
 def index():
@@ -59,21 +68,43 @@ def upload_video():
 
 @app.route('/processed_frame')
 def processed_frame():
+    # Ensure the processed folder is correctly set
+    processed_folder = app.config.get('PROCESSED_FOLDER', None)
+
+    if not processed_folder:
+        current_app.logger.error("Processed folder not configured.")
+        return "Processed folder not configured", 500
+
     # Define the path to the processed frame
-    frame_path = os.path.join(app.config['PROCESSED_FOLDER'], 'frame.jpg')
+    frame_path = os.path.join(processed_folder, 'frame.jpg')
 
     # Check if the frame file exists
     if os.path.exists(frame_path):
+        # Get the file modification time
+        last_modified_time = os.path.getmtime(frame_path)
+        last_modified = datetime.utcfromtimestamp(last_modified_time).strftime('%a, %d %b %Y %H:%M:%S GMT')
+
+        # Check if the client sent the 'If-Modified-Since' header
+        if 'If-Modified-Since' in request.headers:
+            if_modified_since = request.headers.get('If-Modified-Since')
+
+            # Compare the times to determine if the file has been modified
+            if if_modified_since == last_modified:
+                # Return a 304 Not Modified response
+                return '', 304
+
         # Serve the processed frame with cache-busting headers
-        response = make_response(send_from_directory(app.config['PROCESSED_FOLDER'], 'frame.jpg'))
+        response = make_response(send_from_directory(processed_folder, 'frame.jpg'))
+        response.headers['Last-Modified'] = last_modified
         response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
         response.headers['Pragma'] = 'no-cache'
         response.headers['Expires'] = '0'
         return response
     else:
         # Return a 404 error if the frame file is not found
+        current_app.logger.error(f"File not found at: {frame_path}")
         return "No processed frame available", 404
-
+    
 def process_video(video_path):
     print("Starting video processing...")
     cap = cv2.VideoCapture(video_path)

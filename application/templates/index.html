@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video Upload and Processing</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css?v=1.0') }}">
+
 </head>
 <body>
     <h1>Upload a Video for Processing</h1>
 
-    <form action="{{ url_for('upload_video') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ url_for('UPLOAD_FOLDER') }}" method="post" enctype="multipart/form-data">
         <input type="file" name="video" accept="video/*" required>
         <br><br>
         <button type="submit">Upload Video</button>
@@ -18,7 +19,7 @@
     {% if frame_available %}
         <div class="frame-container">
             <h2>Processed Frame:</h2>
-            <img src="{{ url_for('processed_frame') }}?t={{ timestamp }}" alt="Processed Frame">
+            <img src="{{ url_for('PROCESSED_FOLDER') }}?t={{ timestamp }}" alt="Processed Frame">
         </div>
     {% else %}
         <div class="frame-container">
